@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebApplication7.Models.Project>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <form method="post" asp-action="Save">
+        <table>
+            <tr>
+                <td style="vertical-align:top">
+                    <table class="table_project">
+                        <tr>
+                            <th>Title</th>
+                            <td>
+                                <input type="text" class="directInput" name="title" id="title" value="@ViewBag.name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Owner</th>
+                            <td>
+                                <input type="text" class="directInput" name="owner" id="owner" value="@ViewBag.owner" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Due Date</th>
+                            <td>
+                                <input type="text" class="directInput" name="duedate" id="duedate" value="@ViewBag.duedate" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table id="table_data">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Owner</th>
+                            <th>Due Date</th>
+                        </tr>
+                        @{
+                            foreach(var i in Model)
+                            {
+                                 <tr>
+                                     <td><div class="dragitem">@i.ProjectId</div></td>
+                                     <td><div class="dragitem">@i.title</div></td>
+                                     <td><div class="dragitem">@i.owner</div></td>
+                                     <td><div class="dragitem">@i.duedate</div></td>
+                                 </tr>
+                            }
+
+                        }
+                    </table>
+                </td>
+                <td>
+                    <select class="form-control" name="thisgroup" id="thisgroup" asp-items="ViewBag.Groups"></select>
+                </td>
+            </tr>
+            
+        </table>
+
+        <br>
+
+        <input type="submit" class="btn btn-info w-180" value="SAVE"/>
+        <input type="submit" class="btn btn-danger w-180" asp-action="DeleteData" value="DELETE"/>
+        <input type="text" name="ProjectId" id="ProjectId" style="border:0px" value="@ViewBag.ProjectId"/>
+
+    </form>
+
+
+
+
+
+
+
+
+
